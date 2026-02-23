@@ -1,12 +1,10 @@
 resource "aws_instance" "example" {
-  #count = 6
-  count = length(["mongodb", "redis", "mysql", "catalogue","rabbitmq","cart"])
-  ami           = "ami-0220d79f3f480ecf5"
+  ami           = data.aws_ami.joindevops.id
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tags = {
-    Name = var.instances[count.index]
+    Name = "HelloWorld"
     project = "roboshop"
   }
 }
@@ -35,3 +33,5 @@ resource "aws_security_group" "allow_tls" {
     Name = "allow_all_terraform"
   }
 }
+
+

@@ -1,12 +1,12 @@
 resource "aws_instance" "example" {
-  #count = 6
-  count = length(["mongodb", "redis", "mysql", "catalogue","rabbitmq","cart"])
+  for_each = toset(var.instances)
+
   ami           = "ami-0220d79f3f480ecf5"
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tags = {
-    Name = var.instances[count.index]
+    Name = each.key
     project = "roboshop"
   }
 }
