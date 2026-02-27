@@ -1,4 +1,4 @@
-output "instances" {
-    value = aws_instance.example
+/* # output "instances" {
+#     value = aws_instance.example
   
-}
+# } */

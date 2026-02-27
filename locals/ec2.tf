@@ -1,14 +1,9 @@
 resource "aws_instance" "example" {
-  #count = 6
-  count = length(var.instances) # count the instances lenght from variables and gives the number to the count
-  ami           = "ami-0220d79f3f480ecf5"
-  instance_type = "t3.micro"
+  ami           = local.ami_id
+  instance_type = local.instance_type
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
-  tags = {
-    Name = var.instances[count.index]
-    project = "roboshop"
-  }
+  tags = local.ec2_final_tags
 }
 
 resource "aws_security_group" "allow_tls" {
@@ -35,3 +30,5 @@ resource "aws_security_group" "allow_tls" {
     Name = "allow_all_terraform"
   }
 }
+
+

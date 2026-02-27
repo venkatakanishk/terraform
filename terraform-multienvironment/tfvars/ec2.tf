@@ -1,18 +1,16 @@
 resource "aws_instance" "example" {
-  #count = 6
-  count = length(var.instances) # count the instances lenght from variables and gives the number to the count
   ami           = "ami-0220d79f3f480ecf5"
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tags = {
-    Name = var.instances[count.index]
+    Name = "terraform-state-demo-${var.environment}"
     project = "roboshop"
   }
 }
 
 resource "aws_security_group" "allow_tls" {
-  name        = "allow_all_terraform"
+  name        = "allow_all_terraform-${var.environment}"
   description = "Allow TLS inbound traffic and all outbound traffic"
 
   egress {
@@ -32,6 +30,8 @@ resource "aws_security_group" "allow_tls" {
   }
 
   tags = {
-    Name = "allow_all_terraform"
+    Name = "allow_all_terraform-${var.environment}"
   }
 }
+
+
