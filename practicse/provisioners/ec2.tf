@@ -37,6 +37,7 @@ resource "aws_instance" "example" {
     "sudo dnf install nginx -y",
     "sudo systemctl start nginx"
   ]
+  when = destroy
   } 
   tags = {
     Name = "provisioners-demo"
