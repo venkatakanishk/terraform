@@ -7,7 +7,9 @@ resource "aws_instance" "example" {
   provisioner "local-exec" {
     command = "echo ${self.public_ip}' > inventory.ini "
   }
-
+  provisioner "local-exec" {
+    command = "exit 1"
+  }
   provisioner "local-exec" {
     command = "echo script-2"
   }
