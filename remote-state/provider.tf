@@ -7,7 +7,7 @@ terraform {
   }
 
 backend "s3" {
-    bucket = "remote-statefile-nani"
+    bucket = "remote-statefile-nani-dev"
     key    = "remote-statefile.tf"
     region = "us-east-1"
     encrypt = true
