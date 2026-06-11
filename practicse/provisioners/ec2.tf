@@ -24,6 +24,20 @@ resource "aws_instance" "example" {
     when   =   destroy
       command = "echo  > inventory.ini "
     }
+
+  /* connection {
+  type     = "ssh"
+  user     = "ec2-user"
+  password = DevOps123
+  host     = self.public_ip
+  }
+  
+  provisioner "remote-exec" {
+  inline = [
+    "sudo dnf install nginx -y",
+    "sudo systemctl start nginx"
+  ]
+  } */
   tags = {
     Name = "provisioners-demo"
     project = "roboshop"
