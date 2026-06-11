@@ -25,7 +25,7 @@ resource "aws_instance" "example" {
       command = "echo  > inventory.ini "
     }
 
-  /* connection {
+  connection {
   type     = "ssh"
   user     = "ec2-user"
   password = DevOps123
@@ -37,7 +37,7 @@ resource "aws_instance" "example" {
     "sudo dnf install nginx -y",
     "sudo systemctl start nginx"
   ]
-  } */
+  } 
   tags = {
     Name = "provisioners-demo"
     project = "roboshop"
