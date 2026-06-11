@@ -8,6 +8,18 @@ resource "aws_instance" "example" {
     command = "echo ${self.public_ip}' > inventory.ini "
   }
 
+  provisioner "local-exec" {
+    command = "echo script-2"
+  }
+
+  provisioner "local-exec" {
+    when   =   destroy
+      command = "echo deleting the instance"
+  }
+  provisioner "local-exec" {
+    when   =   destroy
+      command = "echo  > inventory.ini "
+    }
   tags = {
     Name = "provisioners-demo"
     project = "roboshop"
