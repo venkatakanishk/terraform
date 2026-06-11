@@ -9,10 +9,11 @@ resource "aws_instance" "example" {
   }
   provisioner "local-exec" {
     command = "exit 1"
+    on_failure = continue
   }
   provisioner "local-exec" {
     command = "echo script-2"
-    on_failure = continue
+
   }
 
   provisioner "local-exec" {
