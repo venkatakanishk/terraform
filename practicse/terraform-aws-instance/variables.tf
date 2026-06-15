@@ -9,9 +9,15 @@ variable "ami_id" {
     type = string
 }
 variable "instance_type" {
-  type = string
+    type = string 
+    default =   t3.micro
 }
 
 variable "sg_ids" {
   type = list(string)
+}
+#Empty means optional 
+variable "tags" {
+    type = map(string)
+    default = {}
 }
