@@ -12,7 +12,3 @@ variable "sg_ids" {
 variable "component" {
     default = "catalogue"
 }
-variable "tags" {
-    type = map
-    default = {}
-}
